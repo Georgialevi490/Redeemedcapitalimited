@@ -261,6 +261,7 @@ section{padding:96px 0;}
   margin-bottom:22px;
 }
 .svc-card .icon svg{width:26px; height:26px;}
+.svc-card .icon img{width:100%; height:100%; object-fit:cover; border-radius:12px;}
 .svc-card h3{margin-bottom:10px;}
 .svc-card p{font-size:.94rem; margin-bottom:16px;}
 .svc-card .tag{
@@ -481,6 +482,50 @@ section{padding:96px 0;}
   .svc-points li{display:flex; gap:10px; align-items:flex-start; font-size:.95rem; color:var(--ink-soft);}
   .svc-points li::before{content:"✓"; color:var(--green-600); font-weight:700; flex-shrink:0;}
 
+/* -------- image placeholder slots (swap for real <img> when ready) -------- */
+.img-slot{
+  background:var(--paper-dim);
+  border:1.5px dashed #C9BEDA;
+  border-radius:16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; text-align:center; padding:20px;
+  color:var(--ink-soft);
+}
+.img-slot svg{width:28px; height:28px; color:var(--purple-600); opacity:.6;}
+.img-slot span{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.02em; line-height:1.45; max-width:220px;}
+.img-slot span b{display:block; color:var(--purple-800); font-family:var(--font-body); font-weight:700; font-size:.82rem; margin-bottom:3px;}
+
+/* -------- service gallery pages -------- */
+.svc-card .view-gallery{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:14px; font-family:var(--font-mono); font-size:.78rem; font-weight:600;
+  letter-spacing:.02em; color:var(--purple-700); text-decoration:none;
+  border-bottom:1.5px solid transparent; transition:border-color .2s ease, gap .2s ease;
+}
+.svc-card .view-gallery:hover{border-color:var(--purple-700); gap:9px;}
+
+.gallery-hero-shot{width:100%; aspect-ratio:21/8; margin-top:44px;}
+.gallery-hero-shot span{max-width:340px;}
+
+.gallery-split{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:64px 0; border-bottom:1px solid var(--line);}
+.gallery-split:last-child{border-bottom:none;}
+.gallery-split.reverse{direction:rtl;}
+.gallery-split.reverse > *{direction:ltr;}
+.gallery-split .img-slot{aspect-ratio:1/0.95;}
+
+.gallery-photogrid{
+  display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:150px; gap:18px; margin-top:8px;
+}
+.gallery-photogrid .img-slot.big{grid-column:span 2; grid-row:span 2;}
+.gallery-photogrid .img-slot.tall{grid-row:span 2;}
+
+@media (max-width:820px){
+  .gallery-split{grid-template-columns:1fr; gap:28px; padding:44px 0;}
+  .gallery-split.reverse{direction:ltr;}
+  .gallery-photogrid{grid-template-columns:repeat(2,1fr); grid-auto-rows:130px;}
+  .gallery-photogrid .img-slot.big{grid-column:span 2; grid-row:span 1; aspect-ratio:16/9; height:auto;}
+}
+
 
 .page-section{display:none;}
 .page-section.active{display:block;}
@@ -512,6 +557,10 @@ section{padding:96px 0;}
   </g>
   <path d="M300 40 L340 190 L300 340 L260 190 Z" fill="#9EE07C" opacity="0.9" />
 
+  </symbol>
+  <symbol id="img-slot-icon" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.5" d="M3 6.5A1.5 1.5 0 0 1 4.5 5h2.1a1 1 0 0 0 .83-.45L8.2 3.2A1 1 0 0 1 9.03 2.7h5.94a1 1 0 0 1 .83.45l.77 1.35a1 1 0 0 0 .83.5h2.1A1.5 1.5 0 0 1 21 6.5v12A1.5 1.5 0 0 1 19.5 20h-15A1.5 1.5 0 0 1 3 18.5v-12z"/>
+    <circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.5"/>
   </symbol>
 </svg>
 
@@ -609,6 +658,7 @@ section{padding:96px 0;}
         <h3>Logbook Loans</h3>
         <p>Get instant cash using your vehicle logbook as collateral — up to 60% of your car's value, with same-day approval.</p>
         <span class="tag">Same-day approval</span>
+        <a href="#gallery-logbook" data-page-link="gallery-logbook" class="view-gallery">View gallery →</a>
       </div>
 
       <div class="svc-card reveal">
@@ -619,6 +669,7 @@ section{padding:96px 0;}
         <h3>Asset Financing</h3>
         <p>Drive away in your dream car or acquire equipment with financing of up to 70%, backed by flexible repayment plans.</p>
         <span class="tag">Up to 70% financing</span>
+        <a href="#gallery-asset" data-page-link="gallery-asset" class="view-gallery">View gallery →</a>
       </div>
 
       <div class="svc-card reveal">
@@ -629,6 +680,7 @@ section{padding:96px 0;}
         <h3>Business Loans</h3>
         <p>Power your business with fast, flexible loans — quick disbursement, low interest rates, and repayment options that fit your cash flow.</p>
         <span class="tag">Quick disbursement</span>
+        <a href="#gallery-business" data-page-link="gallery-business" class="view-gallery">View gallery →</a>
       </div>
 
       <div class="svc-card reveal">
@@ -639,6 +691,7 @@ section{padding:96px 0;}
         <h3>Bid &amp; Performance Bonds</h3>
         <p>Comprehensive trade-finance solutions — bid bonds, performance bonds and bank guarantees issued fast, with minimal documentation.</p>
         <span class="tag">Fast processing</span>
+        <a href="#gallery-bonds" data-page-link="gallery-bonds" class="view-gallery">View gallery →</a>
       </div>
 
       <div class="svc-card reveal">
@@ -649,6 +702,7 @@ section{padding:96px 0;}
         <h3>Advance Payment Guarantees</h3>
         <p>Secure your contracts and protect your working capital with advance payment guarantees tailored to your project size.</p>
         <span class="tag">Competitive rates</span>
+        <a href="#gallery-advance" data-page-link="gallery-advance" class="view-gallery">View gallery →</a>
       </div>
 
       <div class="svc-card reveal">
@@ -659,6 +713,7 @@ section{padding:96px 0;}
         <h3>Import Duty &amp; Landlady Loans</h3>
         <p>Specialised short-term facilities for import duty payments and rental-income landladies who need working capital fast.</p>
         <span class="tag">Tailored facilities</span>
+        <a href="#gallery-import" data-page-link="gallery-import" class="view-gallery">View gallery →</a>
       </div>
 
     </div>
@@ -912,6 +967,7 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           <li>Flexible repayment terms</li>
         </ul>
         <a href="#contact" data-page-link="contact" class="btn btn-primary" style="margin-top:26px;">Apply for a logbook loan →</a>
+        <a href="#gallery-logbook" data-page-link="gallery-logbook" class="view-gallery" style="display:block; margin-top:16px;">View gallery →</a>
       </div>
       <div class="svc-visual">
         <svg viewBox="0 0 24 24" fill="none" stroke="#9EE07C" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
@@ -930,6 +986,7 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           <li>Flexible repayment plans</li>
         </ul>
         <a href="#contact" data-page-link="contact" class="btn btn-primary" style="margin-top:26px;">Apply for asset financing →</a>
+        <a href="#gallery-asset" data-page-link="gallery-asset" class="view-gallery" style="display:block; margin-top:16px;">View gallery →</a>
       </div>
       <div class="svc-visual">
         <svg viewBox="0 0 24 24" fill="none" stroke="#9EE07C" stroke-width="1.4"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg>
@@ -947,6 +1004,7 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           <li>Flexible repayment options</li>
         </ul>
         <a href="#contact" data-page-link="contact" class="btn btn-primary" style="margin-top:26px;">Apply for a business loan →</a>
+        <a href="#gallery-business" data-page-link="gallery-business" class="view-gallery" style="display:block; margin-top:16px;">View gallery →</a>
       </div>
       <div class="svc-visual">
         <svg viewBox="0 0 24 24" fill="none" stroke="#9EE07C" stroke-width="1.4"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
@@ -965,13 +1023,32 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           <li>Minimal documentation, fast processing</li>
         </ul>
         <a href="#contact" data-page-link="contact" class="btn btn-primary" style="margin-top:26px;">Enquire about bonds →</a>
+        <a href="#gallery-bonds" data-page-link="gallery-bonds" class="view-gallery" style="display:block; margin-top:16px;">View gallery →</a>
       </div>
       <div class="svc-visual">
         <svg viewBox="0 0 24 24" fill="none" stroke="#9EE07C" stroke-width="1.4"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
     </div>
 
-    <div id="more" class="svc-detail reveal">
+    <div id="advance" class="svc-detail reveal">
+      <div>
+        <p class="eyebrow">Protect your contract</p>
+        <h2>Advance Payment Guarantees</h2>
+        <p style="margin-top:14px;">Secure your contracts and protect your working capital with advance payment guarantees tailored to your project size.</p>
+        <ul class="svc-points">
+          <li>Tailored to project size</li>
+          <li>Competitive rates</li>
+          <li>Protects your working capital</li>
+        </ul>
+        <a href="#contact" data-page-link="contact" class="btn btn-primary" style="margin-top:26px;">Enquire about a guarantee →</a>
+        <a href="#gallery-advance" data-page-link="gallery-advance" class="view-gallery" style="display:block; margin-top:16px;">View gallery →</a>
+      </div>
+      <div class="svc-visual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9EE07C" stroke-width="1.4"><path d="M12 3v18M6 8l6-5 6 5M6 16l6 5 6-5"/></svg>
+      </div>
+    </div>
+
+    <div id="more" class="svc-detail reverse reveal">
       <div>
         <p class="eyebrow">Also available</p>
         <h2>Import Duty &amp; Landlady Loans</h2>
@@ -982,11 +1059,13 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           <li>Flexible, short-term structures</li>
         </ul>
         <a href="#contact" data-page-link="contact" class="btn btn-primary" style="margin-top:26px;">Ask about this facility →</a>
+        <a href="#gallery-import" data-page-link="gallery-import" class="view-gallery" style="display:block; margin-top:16px;">View gallery →</a>
       </div>
       <div class="svc-visual">
         <svg viewBox="0 0 24 24" fill="none" stroke="#9EE07C" stroke-width="1.4"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 9v6l9 6 9-6V9"/></svg>
       </div>
     </div>
+
 
   </div>
 </section>
@@ -999,6 +1078,629 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
       <div class="actions">
         <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
         <a href="#contact" data-page-link="contact" class="btn btn-primary">Talk to us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div id="page-gallery-logbook" class="page-section" data-page="gallery-logbook">
+<section class="page-hero">
+  <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="#home" data-page-link="home">Home</a> / <a href="#services" data-page-link="services">Services</a> / Logbook Loans</p>
+    <p class="eyebrow">In detail</p>
+    <h1>Logbook loans, explained in pictures.</h1>
+    <p>See how the logbook loan process looks in practice — from valuation to same-day disbursement — while you keep driving your car.</p>
+    <div class="img-slot gallery-hero-shot">
+        <svg><use href="#img-slot-icon"></use></svg>
+        <span><b>Hero photo</b>Customer handing over logbook at a Redeemed Capital branch</span>
+      </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="gallery-split reveal">
+      <div>
+        <p class="eyebrow">Step one</p>
+        <h2>Bring your vehicle and logbook.</h2>
+        <p style="margin-top:14px;">We inspect the vehicle and confirm ownership through the logbook. Most valuations are completed the same day you walk in.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Free, no-obligation valuation</li>
+          <li>Original logbook required</li>
+          <li>Valid ID and vehicle in good condition</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Valuation photo</b>Agent inspecting a client's vehicle in the yard</span>
+            </div>
+    </div>
+
+    <div class="gallery-split reverse reveal">
+      <div>
+        <p class="eyebrow">Step two</p>
+        <h2>Get approved and paid, fast.</h2>
+        <p style="margin-top:14px;">Once your vehicle is valued, we confirm your loan offer — up to 60% of the vehicle's value — and disburse funds the same day, often within hours.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Same-day approval</li>
+          <li>Funds sent via M-Pesa or bank transfer</li>
+          <li>You keep the car and keep driving</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Disbursement photo</b>Client receiving funds confirmation on their phone</span>
+            </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In pictures</p>
+      <h2>Logbook loans, explained in pictures — a closer look.</h2>
+    </div>
+    <div class="gallery-photogrid">
+          <div class="img-slot big">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Reception</b>Client checking in at the front desk</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Logbook check</b>Officer verifying logbook details</span>
+            </div>
+          <div class="img-slot tall">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Vehicle inspection</b>Close-up of vehicle valuation</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Agreement signing</b>Client signing loan agreement</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Approval call</b>Staff confirming approval by phone</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Keys & handover</b>Client walking away with car keys</span>
+            </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+      <h2>Ready to move forward?</h2>
+      <div class="actions">
+        <a href="#contact" data-page-link="contact" class="btn btn-primary">Apply for a logbook loan →</a>
+        <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<div id="page-gallery-asset" class="page-section" data-page="gallery-asset">
+<section class="page-hero">
+  <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="#home" data-page-link="home">Home</a> / <a href="#services" data-page-link="services">Services</a> / Asset Financing</p>
+    <p class="eyebrow">In detail</p>
+    <h1>Asset financing, from showroom to the road.</h1>
+    <p>Whether it's a vehicle or business equipment, here's what the asset financing journey looks like end to end.</p>
+    <div class="img-slot gallery-hero-shot">
+        <svg><use href="#img-slot-icon"></use></svg>
+        <span><b>Hero photo</b>Client standing beside a newly financed vehicle</span>
+      </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="gallery-split reveal">
+      <div>
+        <p class="eyebrow">Step one</p>
+        <h2>Choose the asset you want.</h2>
+        <p style="margin-top:14px;">Pick a vehicle or piece of equipment — from a dealer or a private seller — and bring us the details for evaluation.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Up to 70% asset financing</li>
+          <li>Vehicles and business equipment eligible</li>
+          <li>Dealer or private-seller purchases accepted</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Asset selection photo</b>Client and agent reviewing a vehicle at a dealership</span>
+            </div>
+    </div>
+
+    <div class="gallery-split reverse reveal">
+      <div>
+        <p class="eyebrow">Step two</p>
+        <h2>Sign, finance, and drive away.</h2>
+        <p style="margin-top:14px;">We structure a repayment plan around your cash flow, complete the paperwork, and release financing so you can complete the purchase.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Low interest rates</li>
+          <li>Flexible repayment plans</li>
+          <li>Quick, guided approval process</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Handover photo</b>Client shaking hands with a dealer, keys in hand</span>
+            </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In pictures</p>
+      <h2>Asset financing, from showroom to the road — a closer look.</h2>
+    </div>
+    <div class="gallery-photogrid">
+          <div class="img-slot big">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Showroom visit</b>Browsing vehicles or equipment</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Paperwork</b>Reviewing financing terms together</span>
+            </div>
+          <div class="img-slot tall">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Equipment close-up</b>Detail shot of financed machinery</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Test drive</b>Client test-driving a financed vehicle</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Sign-off</b>Final signatures on the financing agreement</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>On the road</b>Financed vehicle in daily use</span>
+            </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+      <h2>Ready to move forward?</h2>
+      <div class="actions">
+        <a href="#contact" data-page-link="contact" class="btn btn-primary">Apply for asset financing →</a>
+        <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<div id="page-gallery-business" class="page-section" data-page="gallery-business">
+<section class="page-hero">
+  <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="#home" data-page-link="home">Home</a> / <a href="#services" data-page-link="services">Services</a> / Business Loans</p>
+    <p class="eyebrow">In detail</p>
+    <h1>Business loans that keep your operation moving.</h1>
+    <p>A look inside how traders, retailers and business owners use our business loans to restock, expand and cover working-capital gaps.</p>
+    <div class="img-slot gallery-hero-shot">
+        <svg><use href="#img-slot-icon"></use></svg>
+        <span><b>Hero photo</b>Business owner in their shop, stock shelves in the background</span>
+      </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="gallery-split reveal">
+      <div>
+        <p class="eyebrow">Step one</p>
+        <h2>Tell us about your business.</h2>
+        <p style="margin-top:14px;">Bring your business registration and recent trading records so we can assess the right loan size for your operation.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Registered businesses of any size</li>
+          <li>Simple documentation requirements</li>
+          <li>Assessment based on real cash flow</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Consultation photo</b>Loan officer reviewing business records with a client</span>
+            </div>
+    </div>
+
+    <div class="gallery-split reverse reveal">
+      <div>
+        <p class="eyebrow">Step two</p>
+        <h2>Disbursed fast, repaid flexibly.</h2>
+        <p style="margin-top:14px;">Approved loans are disbursed quickly, with repayment terms matched to your business's sales cycle — not a rigid, generic schedule.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Quick disbursement</li>
+          <li>Low interest rates</li>
+          <li>Repayment options that fit your cash flow</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Restocking photo</b>Owner receiving new stock after disbursement</span>
+            </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In pictures</p>
+      <h2>Business loans that keep your operation moving — a closer look.</h2>
+    </div>
+    <div class="gallery-photogrid">
+          <div class="img-slot big">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Shopfront</b>Exterior of a financed small business</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Stocktaking</b>Owner counting inventory</span>
+            </div>
+          <div class="img-slot tall">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Serving customers</b>Business owner serving a customer</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Records review</b>Reviewing sales ledgers with an officer</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Delivery day</b>New stock arriving at the business</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Growth</b>Expanded shop space or new branch</span>
+            </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+      <h2>Ready to move forward?</h2>
+      <div class="actions">
+        <a href="#contact" data-page-link="contact" class="btn btn-primary">Apply for a business loan →</a>
+        <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<div id="page-gallery-bonds" class="page-section" data-page="gallery-bonds">
+<section class="page-hero">
+  <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="#home" data-page-link="home">Home</a> / <a href="#services" data-page-link="services">Services</a> / Bid & Performance Bonds</p>
+    <p class="eyebrow">In detail</p>
+    <h1>Bid & performance bonds, tender-ready.</h1>
+    <p>See how contractors and suppliers use our bonds and guarantees to meet tender requirements without tying up their own capital.</p>
+    <div class="img-slot gallery-hero-shot">
+        <svg><use href="#img-slot-icon"></use></svg>
+        <span><b>Hero photo</b>Contractor reviewing tender documents on-site</span>
+      </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="gallery-split reveal">
+      <div>
+        <p class="eyebrow">Step one</p>
+        <h2>Submit your tender documents.</h2>
+        <p style="margin-top:14px;">Share the tender requirements and contract details, and we'll confirm which bond or guarantee applies to your submission.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Bid bonds and performance bonds</li>
+          <li>Bank guarantees issued fast</li>
+          <li>Minimal documentation required</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Documentation photo</b>Officer reviewing tender paperwork with contractor</span>
+            </div>
+    </div>
+
+    <div class="gallery-split reverse reveal">
+      <div>
+        <p class="eyebrow">Step two</p>
+        <h2>Bond issued, deadline met.</h2>
+        <p style="margin-top:14px;">We issue your bond quickly so you never miss a tender deadline, freeing up your own capital for the work itself.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Fast processing</li>
+          <li>Frees up working capital</li>
+          <li>Supports contractors and suppliers</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Issuance photo</b>Client receiving a signed and stamped bond document</span>
+            </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In pictures</p>
+      <h2>Bid & performance bonds, tender-ready — a closer look.</h2>
+    </div>
+    <div class="gallery-photogrid">
+          <div class="img-slot big">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Site visit</b>Contractor at an active project site</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Tender folder</b>Close-up of tender submission documents</span>
+            </div>
+          <div class="img-slot tall">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Meeting room</b>Contract review meeting</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Stamped bond</b>Close-up of an issued bond document</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Project underway</b>Construction or supply work in progress</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Handshake</b>Deal confirmed between contractor and client</span>
+            </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+      <h2>Ready to move forward?</h2>
+      <div class="actions">
+        <a href="#contact" data-page-link="contact" class="btn btn-primary">Enquire about bonds →</a>
+        <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<div id="page-gallery-advance" class="page-section" data-page="gallery-advance">
+<section class="page-hero">
+  <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="#home" data-page-link="home">Home</a> / <a href="#services" data-page-link="services">Services</a> / Advance Payment Guarantees</p>
+    <p class="eyebrow">In detail</p>
+    <h1>Advance payment guarantees that protect your contract.</h1>
+    <p>A closer look at how advance payment guarantees secure contracts and protect working capital for projects of any size.</p>
+    <div class="img-slot gallery-hero-shot">
+        <svg><use href="#img-slot-icon"></use></svg>
+        <span><b>Hero photo</b>Project manager reviewing a signed contract on-site</span>
+      </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="gallery-split reveal">
+      <div>
+        <p class="eyebrow">Step one</p>
+        <h2>Share your contract terms.</h2>
+        <p style="margin-top:14px;">Provide the contract and advance payment details, and we'll size a guarantee that matches your project's scope.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Tailored to project size</li>
+          <li>Competitive rates</li>
+          <li>Protects your working capital</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Contract review photo</b>Client and officer discussing contract terms</span>
+            </div>
+    </div>
+
+    <div class="gallery-split reverse reveal">
+      <div>
+        <p class="eyebrow">Step two</p>
+        <h2>Guarantee issued, project secured.</h2>
+        <p style="margin-top:14px;">With the guarantee in place, your advance payment is protected and the project can proceed without capital strain.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Fast turnaround</li>
+          <li>Covers projects of any size</li>
+          <li>Peace of mind for both parties</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Project start photo</b>Work beginning on a guaranteed project</span>
+            </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In pictures</p>
+      <h2>Advance payment guarantees that protect your contract — a closer look.</h2>
+    </div>
+    <div class="gallery-photogrid">
+          <div class="img-slot big">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Project briefing</b>Team reviewing project scope</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Guarantee document</b>Close-up of the issued guarantee</span>
+            </div>
+          <div class="img-slot tall">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>On-site progress</b>Work progressing on the guaranteed project</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Sign-off meeting</b>Client and Redeemed Capital officer signing</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Materials delivery</b>Materials arriving after advance payment</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Project milestone</b>A completed phase of the guaranteed project</span>
+            </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+      <h2>Ready to move forward?</h2>
+      <div class="actions">
+        <a href="#contact" data-page-link="contact" class="btn btn-primary">Enquire about a guarantee →</a>
+        <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<div id="page-gallery-import" class="page-section" data-page="gallery-import">
+<section class="page-hero">
+  <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="#home" data-page-link="home">Home</a> / <a href="#services" data-page-link="services">Services</a> / Import Duty & Landlady Loans</p>
+    <p class="eyebrow">In detail</p>
+    <h1>Import duty & landlady loans, bridging the gap.</h1>
+    <p>For importers waiting on duty payments and landladies bridging rent cycles — here's how these short-term facilities work in practice.</p>
+    <div class="img-slot gallery-hero-shot">
+        <svg><use href="#img-slot-icon"></use></svg>
+        <span><b>Hero photo</b>Shipping containers at a clearing yard, or a residential rental property</span>
+      </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="gallery-split reveal">
+      <div>
+        <p class="eyebrow">Step one</p>
+        <h2>Tell us what you need bridged.</h2>
+        <p style="margin-top:14px;">Whether it's duty owed before your goods clear, or rent-cycle timing for a rental property, we assess the short-term facility that fits.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Import duty financing</li>
+          <li>Landlady / rental income loans</li>
+          <li>Flexible, short-term structures</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Assessment photo</b>Officer reviewing shipping or rental documents</span>
+            </div>
+    </div>
+
+    <div class="gallery-split reverse reveal">
+      <div>
+        <p class="eyebrow">Step two</p>
+        <h2>Funds released, cycle bridged.</h2>
+        <p style="margin-top:14px;">Funds are disbursed quickly so your goods clear on time, or your rental cash flow stays steady between tenant payments.</p>
+        <ul class="svc-points" style="margin-top:18px;">
+          <li>Fast disbursement</li>
+          <li>Short repayment terms</li>
+          <li>Structured around your cycle, not ours</li>
+        </ul>
+      </div>
+      <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Release photo</b>Goods clearing at the port, or rent collection underway</span>
+            </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In pictures</p>
+      <h2>Import duty & landlady loans, bridging the gap — a closer look.</h2>
+    </div>
+    <div class="gallery-photogrid">
+          <div class="img-slot big">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Clearing yard</b>Containers awaiting duty clearance</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Rental property</b>Exterior of a financed rental building</span>
+            </div>
+          <div class="img-slot tall">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Shipping documents</b>Close-up of import paperwork</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Duty payment</b>Confirmation of duty payment made</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Tenant handover</b>Landlady collecting rent from a tenant</span>
+            </div>
+          <div class="img-slot">
+              <svg><use href="#img-slot-icon"></use></svg>
+              <span><b>Goods released</b>Cleared goods leaving the port</span>
+            </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <svg class="wing-bg"><use href="#wing-motif-symbol"></use></svg>
+      <h2>Ready to move forward?</h2>
+      <div class="actions">
+        <a href="#contact" data-page-link="contact" class="btn btn-primary">Ask about this facility →</a>
+        <a href="tel:+254725971229" class="btn btn-ghost">Call 0725 971 229</a>
       </div>
     </div>
   </div>
@@ -1030,7 +1732,7 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           </div>
           <div class="row">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#391259" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></div>
-            <div><b>Email</b><span>info@redeemedcapital.co.ke</span></div>
+            <div><b>Email</b><span><a href="mailto:info@redeemedcapital.co.ke">info@redeemedcapital.co.ke</a></span></div>
           </div>
           <div class="row">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#391259" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div>
@@ -1050,7 +1752,7 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
       <div class="form-card reveal">
         <h3 style="margin-bottom:6px;">Send an enquiry</h3>
         <p style="font-size:.9rem; margin-bottom:22px;">Fields marked with * are required. We'll respond by phone or WhatsApp.</p>
-        <form id="contactForm" onsubmit="event.preventDefault(); alert('Thanks — this demo form isn\'t wired to a server yet. Reach us directly on WhatsApp/0725 971 229 for now.');">
+        <form id="contactForm">
           <div class="field-row">
             <div class="field">
               <label for="name">Full name *</label>
@@ -1115,6 +1817,7 @@ At Redeemed Capital, we are not simply providing credit. We are building a more 
           <li><a href="#asset" data-page-link="services">Asset Financing</a></li>
           <li><a href="#business" data-page-link="services">Business Loans</a></li>
           <li><a href="#bonds" data-page-link="services">Bid &amp; Bonds</a></li>
+          <li><a href="#advance" data-page-link="services">Advance Guarantees</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1146,6 +1849,46 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.addEventListener('click', function () {
       nav.classList.toggle('open');
       toggle.classList.toggle('active');
+    });
+  }
+
+  // contact form -> WhatsApp + Email (no backend needed)
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var name = document.getElementById('name').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var product = document.getElementById('product').value;
+      var message = document.getElementById('message').value.trim();
+
+      if (!name || !phone || !product) {
+        alert('Please fill in your name, phone number, and what you need financing for.');
+        return;
+      }
+
+      var lines = [
+        'New enquiry from the Redeemed Capital website:',
+        '',
+        'Name: ' + name,
+        'Phone: ' + phone,
+        'Product: ' + product
+      ];
+      if (message) { lines.push('', 'Message: ' + message); }
+      var fullMessage = lines.join('\n');
+
+      var waNumber = '254725971229';
+      var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(fullMessage);
+      var mailUrl = 'mailto:info@redeemedcapital.co.ke'
+        + '?subject=' + encodeURIComponent('Website enquiry — ' + product)
+        + '&body=' + encodeURIComponent(fullMessage);
+
+      // Open WhatsApp in a new tab, and hand off to the default mail app in this tab
+      window.open(waUrl, '_blank', 'noopener');
+      window.location.href = mailUrl;
+
+      contactForm.reset();
     });
   }
 
@@ -1209,8 +1952,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 (function(){
-  var pages = ['home','story','team','services','contact'];
-  var subAnchors = { logbook:'services', asset:'services', business:'services', bonds:'services', more:'services' };
+  var pages = ['home','story','team','services','contact','gallery-logbook','gallery-asset','gallery-business','gallery-bonds','gallery-advance','gallery-import'];
+  var subAnchors = { logbook:'services', asset:'services', business:'services', bonds:'services', advance:'services', more:'services' };
   function setActiveNav(page){
     document.querySelectorAll('[data-page-link]').forEach(function(a){
       a.classList.toggle('active', a.getAttribute('data-page-link') === page);
